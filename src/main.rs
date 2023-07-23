@@ -29,8 +29,15 @@ struct Command {
 
 
 fn main(){
-    // let mut pe_count = 10;
-    let mut pe_count = 3;
+    println!(r"        _ _                        _         _   _                              _   _                 _         _             ");
+    println!(r"   __ _| | |_ ___ _ __ _ __   __ _| |_ ___  | |_(_)_ __ ___   ___    ___  _ __ | |_(_)_ __ ___   __ _| |   __ _| | __ _  ___  ");
+    println!(r"  / _` | | __/ _ \ '__| '_ \ / _` | __/ _ \ | __| | '_ ` _ \ / _ \  / _ \| '_ \| __| | '_ ` _ \ / _` | |  / _` | |/ _` |/ _ \ ");
+    println!(r" | (_| | | ||  __/ |  | | | | (_| | ||  __/ | |_| | | | | | |  __/ | (_) | |_) | |_| | | | | | | (_| | | | (_| | | (_| | (_) |");
+    println!(r"  \__,_|_|\__\___|_|  |_| |_|\__,_|\__\___|  \__|_|_| |_| |_|\___|  \___/| .__/ \__|_|_| |_| |_|\__,_|_|  \__,_|_|\__, |\___/ ");
+    println!(r"                                                                         |_|                                      |___/       ");
+
+    let mut pe_count = 8;
+    // let mut pe_count = 3;
 
 
     //let mut exit_flag = false;
@@ -103,7 +110,7 @@ fn main(){
                             //     // });
                             // } else if top_cmd.mode == String::from("receive") && top_cmd.to_id == pe_id {
                             if top_cmd.mode == String::from("receive") && top_cmd.to_id == pe_id {
-                                println!("In thread receive method of pe with id {}", pe_id);
+                                // println!("In thread receive method of pe with id {}", pe_id);
                                 if top_cmd.cmd_way == String::from("right") {
                                     let mut update_value = 0;
                                     let partial_order = partial_order.lock().unwrap();
@@ -183,7 +190,7 @@ fn main(){
                                     //     }
                                     // }
                                     drop(partial_order);
-                                    println!("Update value in pe with id {} and update-value is {} ----- {}", pe_id, update_value, top_cmd.rec_two);
+                                    // println!("Update value in pe with id {} and update-value is {} ----- {}", pe_id, update_value, top_cmd.rec_two);
                                     cmd_queue.push_back(Command {
                                         mode: String::from("update"),
                                         cmd_way: String::from("update"),
@@ -233,7 +240,7 @@ fn main(){
                                     value = numbers[1];
                                 }
                             } else if top_cmd.mode == String::from("update") && top_cmd.to_id == pe_id {
-                                println!("Update method in pe with id {}", pe_id);
+                                // println!("Update method in pe with id {}", pe_id);
                                 if value != top_cmd.val {
                                     value = top_cmd.val
                                 }
@@ -330,7 +337,7 @@ fn main(){
                 }
             }
         }
-        println!("Completed sending....");
+        // println!("Completed sending....");
         // println!("Mod value with {} round has completed sending", mod_val);
         drop(commands_queue_outer);
         thread::sleep(Duration::from_millis(4000));
